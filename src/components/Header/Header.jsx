@@ -3,19 +3,9 @@ import { NavLink } from 'react-router-dom'
 import css from './Header.module.css'
 
 
-// const Header = () => {
-//   return (
-//     <Header>
-//       <NavLink to="/" className={({isActive}) => isActive ? "Active" : null}>HOME</NavLink>
-//       <NavLink to="movies" className={({isActive}) => isActive ? "Active" : null}>MOVIES</NavLink>
-//     </Header>
-//   )
-// }
-
-// export default Header
-
 const Header = () => {
   return (
+    <div className={css.Headerdiv}>
     <nav className={css.Headernav}>
       <ul className={css.Headerlist}>
         <li>
@@ -25,7 +15,8 @@ const Header = () => {
           <NavLink to="/movies">Movies</NavLink>
         </li>
       </ul>
-    </nav>
+      </nav>
+      </div>
   );
 };
 

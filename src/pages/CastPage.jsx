@@ -8,6 +8,7 @@ const CastPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log('Movie ID:', movieId);
     const getCast = async () => {
       try {
         const castsData = await fetchCastById(movieId);

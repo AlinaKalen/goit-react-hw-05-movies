@@ -25,7 +25,7 @@ export const fetchMoviesById = async (id) => {
   try {
     const response = await movieApi.get(`/movie/${id}`, {
       params: {
-        append_to_response: 'credits,reviews',
+        append_to_response: 'cast,reviews',
       },
     });
     return response.data;
@@ -36,7 +36,7 @@ export const fetchMoviesById = async (id) => {
 };
 
 export const fetchCastById = async (id) => {
-  const response = await movieApi.get(`/movie/${id}/credits`);
+  const response = await movieApi.get(`/movie/${id}/cast`);
   return response.data;
 };
 

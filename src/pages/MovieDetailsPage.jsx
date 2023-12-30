@@ -1,9 +1,10 @@
+// MovieDetailsPage.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMoviesById } from '../components/Api/Api';
 
 const MovieDetailsPage = () => {
-  const { moviesId } = useParams();
+  const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const [movieLocation, setMovieLocation] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -14,10 +15,13 @@ const MovieDetailsPage = () => {
   }, [location.state]);
 
   useEffect(() => {
+    console.log('Movie ID:', movieId);
     const fetchById = async () => {
       try {
-        const movie = await fetchMoviesById(moviesId);
-        setMovie(movie);
+        if (movieId) {
+          const movie = await fetchMoviesById(movieId);
+          setMovie(movie);
+        }
       } catch (error) {
         console.error('Error fetching movie by ID:', error.message);
       } finally {
@@ -26,7 +30,7 @@ const MovieDetailsPage = () => {
     };
 
     fetchById();
-  }, [moviesId]);
+  }, [movieId]);
 
   return (
     <>
@@ -52,12 +56,12 @@ const MovieDetailsPage = () => {
           <hr />
           <div>
             <h3>Additional information</h3>
-            <Link to={`${moviesId}/cast`} style={{ marginRight: 15 }}>
-              Casts
+            <Link to={`/movies/${movieId}/cast`} style={{ marginRight: 15 }}>
+              Cast
             </Link>
-            <Link to={`${moviesId}/reviews`}>Reviews</Link>
+            <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
           </div>
-          <div style={{ margin: '15px 0' }} className="Casts">
+          <div style={{ margin: '15px 0' }}>
             <Outlet />
           </div>
         </>
