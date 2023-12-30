@@ -1,11 +1,17 @@
-// MovieDetailsPage.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMoviesById } from '../components/Api/Api';
+import css from '../components/SearchForm/Form.module.css';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState({
+    title: '',
+    poster_path: '',
+    popularity: 0,
+    overview: '',
+    genres: [],
+  });
   const [movieLocation, setMovieLocation] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
@@ -15,12 +21,11 @@ const MovieDetailsPage = () => {
   }, [location.state]);
 
   useEffect(() => {
-    console.log('Movie ID:', movieId);
     const fetchById = async () => {
       try {
         if (movieId) {
-          const movie = await fetchMoviesById(movieId);
-          setMovie(movie);
+          const movieData = await fetchMoviesById(movieId);
+          setMovie(movieData);
         }
       } catch (error) {
         console.error('Error fetching movie by ID:', error.message);
@@ -35,12 +40,14 @@ const MovieDetailsPage = () => {
   return (
     <>
       {isLoading && <div>Loading...</div>}
-      {!isLoading && movie.title && (
+      {!isLoading && movieId && (
         <>
-          <Link to={movieLocation || '/'}>&lt; Go back</Link>
-          <div style={{ display: 'flex' }}>
+          <Link to={movieLocation || '/'}>
+            <button className={css.SrcButton}>Go back</button>
+          </Link>
+          <div className={`${css.container} ${css.movieDetailsContainer}`}>
             <img
-              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+              src={movie.poster_path ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}` : 'default_image_url'}
               alt={movie.title}
               style={{ marginRight: 30 }}
             />
@@ -54,17 +61,25 @@ const MovieDetailsPage = () => {
             </div>
           </div>
           <hr />
-          <div>
-            <h3>Additional information</h3>
-            <Link to={`/movies/${movieId}/cast`} style={{ marginRight: 15 }}>
+          <div className={css.additionalInfo}>
+            <h3 style={{ fontSize: 20 }}>Additional information</h3>
+            <Link to={`/movies/${movieId}/cast`} style={{ marginRight: 20, fontSize: 20 }}>
               Cast
             </Link>
-            <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+            <Link to={`/movies/${movieId}/reviews`} style={{ fontSize: 20 }}>
+              Reviews
+            </Link>
           </div>
           <div style={{ margin: '15px 0' }}>
             <Outlet />
           </div>
         </>
+      )}
+      {!isLoading && !movieId && (
+        <div>
+          <p>No movie selected.</p>
+          <Link to="/">Go back to the movie list</Link>
+        </div>
       )}
     </>
   );

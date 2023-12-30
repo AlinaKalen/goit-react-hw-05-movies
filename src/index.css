@@ -17,3 +17,6 @@ body {
   background-color: #EAE0ED;
   
 }
+li {
+  list-style: none;
+}
