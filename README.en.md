@@ -1,5 +1,9 @@
 # React homework template
 
+02547a56d41af036b25331624e959b5f - key
+
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjU0N2E1NmQ0MWFmMDM2YjI1MzMxNjI0ZTk1OWI1ZiIsInN1YiI6IjY1OGQ1NzE0ODQ0NDhlNjc4NGI1MGY4NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Nioc-fnvr9ipd5e-JnYl1j97RQWBQ0cae6iM1c94S3Y
+
 This project was created with
 [Create React App](https://github.com/facebook/create-react-app). To get
 acquainted and configure additional features
@@ -7,21 +11,21 @@ acquainted and configure additional features
 
 ## Creating a repository by template
 
-Use this GoIT repository as a template for creating a repository
-of your project. To use it just tap the `«Use this template»` button and choose
+Use this GoIT repository as a template for creating a repository of your
+project. To use it just tap the `«Use this template»` button and choose
 `«Create a new repository»` option, as you can see on the image below.
 
 ![Creating repo from a template step 1](./assets/template-step-1.png)
 
-The page for creating a new repository will open on the next step. Fill out
-the Name field and make sure the repository is public, then click
+The page for creating a new repository will open on the next step. Fill out the
+Name field and make sure the repository is public, then click
 `«Create repository from template»` button.
 
 ![Creating repo from a template step 2](./assets/template-step-2.png)
 
-You now have a personal project repository, having a repository-template file 
-and folder structure. After that, you can work with it as you would with any 
-other private repository: clone it on your computer, write code, commit, and 
+You now have a personal project repository, having a repository-template file
+and folder structure. After that, you can work with it as you would with any
+other private repository: clone it on your computer, write code, commit, and
 send it to GitHub.
 
 ## Preparing for coding
