@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, Suspense } from 'react';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { fetchMoviesByQuery } from '../components/Api/Api';
 import SearchForm from '../components/SearchForm/SearchForm';
 import MoviesList from '../components/MoviesList/MoviesList';
@@ -9,7 +9,6 @@ const MoviesPage = () => {
   
   const [searchMovies, setSearchMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
 
   const handleSubmit = (value) => {
     setSearchParams({ query: value });
@@ -27,7 +26,7 @@ const MoviesPage = () => {
     <>
       <div>
         <SearchForm onSubmit={handleSubmit} />
-        <MoviesList to={''} movies={searchMovies} location={location} />
+        <MoviesList movies={searchMovies} />
       </div>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
